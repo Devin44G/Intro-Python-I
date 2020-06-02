@@ -32,18 +32,27 @@ import sys
 import calendar
 from datetime import datetime
 
-input = input('Please enter and month[mm] and year[yyyy] separated by commas: ').split(',')
 
-
-def cal(*args):
+def calen():
+    args = sys.argv
     date = datetime.now()
-    for month, year in args:
-        if not(month):
-            print(date.month, date.year)
-        elif (month):
-            print(month, date.year)
-        else:
-            print(month, year)
+    month = date.month
+    year = date.year
+
+    if len(args) == 1:
+        pass
+    elif len(args) == 2:
+        month = int(args[1])
+    elif len(args) == 3:
+        month = int(args[1])
+        year = int(args[2])
+
+    if month < 1 or month > 12:
+        print('Please enter a valid month')
+
+    cal = calendar.TextCalendar()
+    cal.prmonth(year, month)
+    print()
 
 
-cal(2, 1990)
+calen()
